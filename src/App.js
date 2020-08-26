@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 class App extends Component {
   constructor() {
     super()
-    this.state = { count: 0 }
+    this.state = {
+      count: 0,
+      text: ''
+    }
   }
 
   render() {
@@ -14,6 +17,9 @@ class App extends Component {
         </button>
         <span>{this.state.count}</span>
         <button onClick={this.increment}>+</button>
+        <div>
+          <input onChange={this.updateText} value={this.state.text} />
+        </div>
       </div>
     )
   }
@@ -24,6 +30,11 @@ class App extends Component {
 
   decrement = () => {
     this.setState(prevState => ({ count: prevState.count - 1 }))
+  }
+
+  updateText = event => {
+    const value = event.target.value
+    this.setState({ text: value })
   }
 }
 
