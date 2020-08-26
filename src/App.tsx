@@ -1,9 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, ChangeEvent } from 'react'
 import { TextMultiplier } from './TextMultiplier'
 
-class App extends Component {
-  constructor() {
-    super()
+interface Props {}
+
+interface State {
+  count: number
+  text: string
+}
+
+class App extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
     this.state = {
       count: 3,
       text: 'foobar'
@@ -36,7 +43,7 @@ class App extends Component {
     this.setState(prevState => ({ count: prevState.count - 1 }))
   }
 
-  updateText = event => {
+  updateText = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value
     this.setState({ text: value })
   }
