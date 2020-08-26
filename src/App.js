@@ -4,8 +4,8 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      count: 0,
-      text: ''
+      count: 3,
+      text: 'foobar'
     }
   }
 
@@ -20,6 +20,7 @@ class App extends Component {
         <div>
           <input onChange={this.updateText} value={this.state.text} />
         </div>
+        {this.renderText()}
       </div>
     )
   }
@@ -36,6 +37,23 @@ class App extends Component {
     const value = event.target.value
     this.setState({ text: value })
   }
+
+  renderText = () => {
+    const { count, text } = this.state
+    return new Array(count).fill(<div>{text}</div>)
+  }
+
+  // Alternative zu renderText()
+  // renderTextWithLoop = () => {
+  //   const { count, text } = this.state;
+  //   let output = [];
+
+  //   for (let i = 0; i < count; i++) {
+  //     output.push(<div>{text}</div>);
+  //   }
+
+  //   return output;
+  // };
 }
 
 export default App
